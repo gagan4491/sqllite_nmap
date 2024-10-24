@@ -1,0 +1,32 @@
+;; please provide the credentials here .
+
+[environment]
+; INT , QA or PROD
+environment = INT
+
+[keyfile]
+ssh_keyfile_path = keyfile/id_rsa
+
+[root]
+ssh_password = sonic_root
+ssh_port = 22
+
+
+[INT]
+int_host = vcsa.sonicad.org
+user = roapi@vsphere.local
+pass = W7*Q%NK^!V!up5
+
+[QA]
+qa_host = lon-vcenter.alertdriving.local
+user = roapi@vsphere.local
+pass= 1232454
+
+[PROD]
+prod_host = N/A
+user = N/A
+pass = N/A
+
+[NETBOX]
+NETBOX_URL = 'https://192.168.100.157'
+NETBOX_TOKEN = 'ce3860482cc0a5775e0243d4c10cc750e3ff0f43'

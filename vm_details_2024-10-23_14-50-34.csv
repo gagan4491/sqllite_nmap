@@ -1,0 +1,37 @@
+VM Name,IP Address,Hostname,OS
+NetBox,192.168.4.100,netbox,Debian GNU/Linux 11 (64-bit)
+Vaultwarden,192.168.4.104,vaultwarden,Debian GNU/Linux 11 (64-bit)
+p9_Asterisk_PBX,192.168.4.107,pbx,Debian GNU/Linux 11 (64-bit)
+aperture-postgres,192.168.4.108,aperture-postgres,Debian GNU/Linux 11 (64-bit)
+int-nagios,192.168.4.109,int-nagios,Debian GNU/Linux 11 (64-bit)
+p9_int-elk,192.168.4.110,elk.int.capoptix.com,Debian GNU/Linux 11 (64-bit)
+gagan_linux,192.168.4.115,gagan-linux,Debian GNU/Linux 11 (64-bit)
+P9_SSIS_INT,192.168.4.120,DEV-SQL.sonicad.org,Microsoft Windows Server 2022 (64-bit)
+p9-int-dw,192.168.4.122,p9-int-dw,Debian GNU/Linux 11 (64-bit)
+ip not in exsi,192.168.4.14,N/A,N/A
+p9_dev_mail_gw,192.168.4.178,int.capoptix.com,Debian GNU/Linux 11 (64-bit)
+ELK-Stack,192.168.4.18,elkstack,Debian GNU/Linux 11 (64-bit)
+wsus,192.168.4.180,svwsus.sonicad.org,Microsoft Windows Server 2016 or later (64-bit)
+ip not in exsi,192.168.4.193,N/A,N/A
+Debian11-gagan04,192.168.4.198,debian,Debian GNU/Linux 11 (64-bit)
+ip not in exsi,192.168.4.2,N/A,N/A
+p9_int_mail_gw,192.168.4.215,int.capoptix.com,Debian GNU/Linux 11 (64-bit)
+ip not in exsi,192.168.4.240,N/A,N/A
+ip not in exsi,192.168.4.243,N/A,N/A
+nsvdc1,192.168.4.245,nsvdc1.sonicad.org,Microsoft Windows Server 2019 (64-bit)
+nsvdc2,192.168.4.246,nsvdc2.sonicad.org,Microsoft Windows Server 2016 or later (64-bit)
+windows_test,192.168.4.247,windows-test.sonicad.org,Microsoft Windows 10 (64-bit)
+Finance 2022,192.168.4.248,financesrvr.sonicad.org,Microsoft Windows Server 2022 (64-bit)
+quickbooks,192.168.4.249,SVFINANCE.sonicad.org,Microsoft Windows 7 (64-bit)
+syed-ska,192.168.4.251,ska,Debian GNU/Linux 11 (64-bit)
+gagan_mssql,192.168.4.26,p9sql-clone,Microsoft Windows 10 (64-bit)
+aperture_ad-vault-net,192.168.4.35,ad.vault.net,Debian GNU/Linux 11 (64-bit)
+ip not in exsi,192.168.4.36,N/A,N/A
+KEMP-LB,192.168.4.6,KEMP,Other Linux (64-bit)
+ip not in exsi,192.168.4.61,N/A,N/A
+p9-bi-knime-int,192.168.4.69,p9-bi-knime-int,Debian GNU/Linux 11 (64-bit)
+aperture_ska,192.168.4.71,ska,Debian GNU/Linux 11 (64-bit)
+p9-storybook,192.168.4.77,p9-storybook,Debian GNU/Linux 11 (64-bit)
+ip not in exsi,192.168.4.81,N/A,N/A
+p9-data-populator,192.168.4.82,p9-data-populator,Debian GNU/Linux 11 (64-bit)
+p9-login,192.168.4.83,p9-login,Debian GNU/Linux 11 (64-bit)
