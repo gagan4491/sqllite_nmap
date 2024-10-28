@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+import os
 import re
 
 import nmap
@@ -9,7 +9,8 @@ from datetime import datetime
 import warnings
 from urllib3.exceptions import InsecureRequestWarning
 
-from modules.config_parser import int_host, int_user, int_pass, env_cfg, ssh_password, ssh_keyfile_path
+from modules.config_parser import int_host, int_user, int_pass, env_cfg, ssh_password, ssh_keyfile_path, \
+    nmap_ips_directory_path
 from modules.functions import add_timestamp_to_filename, get_all_vms
 from modules.vcenter_connection import con_vcenter
 
@@ -146,10 +147,34 @@ def print_vm_details(vm):
 
 
 
+######## ips extraction #######
+
+
+def extract_ips_from_file(filename):
+    ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
+    ips = []
+    with open(filename, 'r') as f:
+        for line in f:
+            ips.extend(re.findall(ip_pattern, line))
+    return ips
+
+def traverse_directory(directory_path):
+
+    unique_ips = set()
+    for root, _, files in os.walk(directory_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            ips = extract_ips_from_file(file_path)
+            unique_ips.update(ips)
+
+    return unique_ips
+#######
+
 
 if __name__ == "__main__":
     keyfile_4k = ssh_keyfile_path
     password = ssh_password
+    directory_path = nmap_ips_directory_path
 
     # Example network range for Nmap scan (modify as needed)
     network_range = '192.168.4.0/24'
@@ -159,47 +184,48 @@ if __name__ == "__main__":
 
     # Get IPs from Nmap and NetBox
     netbox_ips = get_netbox_ips()
-    nmap_ips = get_nmap_ips(network_range)
+    # nmap_ips = get_nmap_ips(network_range)
+    nmap_ips= traverse_directory(directory_path)
 
     # Insert or update the IPs in the daily table
     output = insert_or_update_ip_data(nmap_ips, netbox_ips, daily_table_name)
 
     print(f"Processed {len(nmap_ips)} IPs from Nmap. Inserted/Updated into the table {daily_table_name}.")
 
-    # print("ips should be on netbox :")
-    # for i in output:
-    #     print(i)
+    print("ips should be on netbox :")
+    for i in output:
+        print(i)
 
-    if env_cfg == 'INT':
-        host = int_host
-        user = int_user
-        password = int_pass
-        con = con_vcenter(host=int_host, user=int_user, password=password)
-        filename = 'vm_details.csv'
-        final_filename = add_timestamp_to_filename(filename)
-        # print(final_filename)
-        content = con.RetrieveContent()
-
-
-        def is_ipv4(address):
-            return re.match(r'^\d{1,3}(\.\d{1,3}){3}$', address) is not None
+    # if env_cfg == 'INT':
+    host = int_host
+    user = int_user
+    password = int_pass
+    con = con_vcenter(host=int_host, user=int_user, password=password)
+    filename = 'vm_details.csv'
+    final_filename = add_timestamp_to_filename(filename)
+    print(final_filename)
+    content = con.RetrieveContent()
 
 
-        vms = get_all_vms(content)
+    def is_ipv4(address):
+        return re.match(r'^\d{1,3}(\.\d{1,3}){3}$', address) is not None
 
-        with open(final_filename, "w") as file:
-            file.write(
-                f"{'VM Name'},{'IP Address'},{'Hostname'},{'OS'}\n")
 
-            for i in output:
-                vm = get_vm_by_ip(vms, i)
-                if vm:
-                    file.write(
-                        f"{vm.summary.config.name},{vm.guest.ipAddress},{vm.guest.hostName},{vm.summary.config.guestFullName}\n")
-                else:
-                    file.write(
-                        f"{"ip not in exsi"},{i},{"N/A"},{"N/A"}\n")
-                    print(f"No VM found with IP address: {i}")
+    vms = get_all_vms(content)
+
+    with open(final_filename, "w") as file:
+        file.write(
+            f"{'VM Name'},{'IP Address'},{'Hostname'},{'OS'}\n")
+
+        for i in output:
+            vm = get_vm_by_ip(vms, i)
+            if vm:
+                file.write(
+                    f"{vm.summary.config.name},{vm.guest.ipAddress},{vm.guest.hostName},{vm.summary.config.guestFullName}\n")
+            else:
+                file.write(
+                    f"{"ip not in exsi"},{i},{"N/A"},{"N/A"}\n")
+                print(f"No VM found with IP address: {i}")
 
 
 

@@ -1,9 +1,5 @@
 ;; please provide the credentials here .
 
-[environment]
-; INT , QA or PROD
-environment = INT
-
 [keyfile]
 ssh_keyfile_path = keyfile/id_rsa
 
@@ -30,3 +26,6 @@ pass = N/A
 [NETBOX]
 NETBOX_URL = 'https://192.168.100.157'
 NETBOX_TOKEN = 'ce3860482cc0a5775e0243d4c10cc750e3ff0f43'
+
+[NMAP_IPS]
+directory_path = './only_IPs'

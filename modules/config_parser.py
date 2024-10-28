@@ -8,7 +8,7 @@ import argparse
 config = configparser.RawConfigParser()
 config.read('config.cnf')
 try:
-    env_cfg =  config.get('environment', 'environment').strip()
+    # env_cfg =  config.get('environment', 'environment').strip()
 
     ssh_keyfile_path = config.get('keyfile', 'ssh_keyfile_path').strip()
     ssh_password = config.get('root', 'ssh_password').strip()
@@ -23,6 +23,7 @@ try:
     prod_host = config['PROD']['prod_host'].strip()
     prod_user = config['PROD']['user'].strip()
     prod_pass = config['PROD']['pass'].strip()
+    nmap_ips_directory_path = config['NMAP_IPS']['directory_path'].strip().strip("'")
 except Exception as e:
     print(e)
     print(" please verify the config file if its all correct .")
