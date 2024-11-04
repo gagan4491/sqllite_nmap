@@ -14,6 +14,9 @@ try:
     ssh_password = config.get('root', 'ssh_password').strip()
     ssh_default_port = config.get('root', 'ssh_port').strip()
 
+    netbox_url = config.get('NETBOX', 'NETBOX_URL').strip()
+    netbox_token = config.get('NETBOX', 'NETBOX_TOKEN').strip()
+
     int_host = config['INT']['int_host'].strip()
     int_user = config['INT']['user'].strip()
     int_pass = str(config['INT']['pass']).strip()
@@ -24,6 +27,8 @@ try:
     prod_user = config['PROD']['user'].strip()
     prod_pass = config['PROD']['pass'].strip()
     nmap_ips_directory_path = config['NMAP_IPS']['directory_path'].strip().strip("'")
+    csv_file_path = config.get('CSV_FILE', 'csv_file_path').strip()
+
 except Exception as e:
     print(e)
     print(" please verify the config file if its all correct .")
